@@ -1,0 +1,41 @@
+// Aplica el plugin 'java' para poder trabajar con proyectos Java
+plugins {
+    id 'java'  // Aplica el plugin para proyectos Java, permitiendo la compilación y ejecución de código Java
+}
+
+// Repositorios desde donde se obtendrán las dependencias del proyecto
+repositories {
+    // Maven Central es el repositorio predeterminado donde se buscarán las dependencias.
+    mavenCentral()
+
+    // También se añade un repositorio adicional para obtener artefactos desde Nexus.
+    // Esto puede ser útil si se necesitan dependencias adicionales que no están en Maven Central.
+    maven { url "https://nexus.codehaus.org/content/repositories/releases/" }
+}
+
+// Declaración de las dependencias necesarias para el proyecto
+dependencies {
+    // Dependencia para Selenium WebDriver, necesaria para automatizar el navegador
+    implementation 'org.seleniumhq.selenium:selenium-java:4.30.0'
+
+    // Dependencia de WebDriverManager, que maneja la descarga y configuración automática del controlador de navegador
+    implementation 'io.github.bonigarcia:webdrivermanager:5.6.3'
+
+    // Dependencia de TestNG, el framework para ejecutar las pruebas
+    testImplementation 'org.testng:testng:7.11.0'
+
+    // Dependencia para grabar la pantalla durante la ejecución de las pruebas
+    implementation 'com.github.stephenc.monte:monte-screen-recorder:0.7.7.0'
+
+    // Dependencia de Apache Commons IO para facilitar operaciones con archivos y directorios
+    implementation 'commons-io:commons-io:2.15.1'
+
+    // Dependencia para el sistema de logging SLF4J, útil para registrar información de ejecución
+    testImplementation 'org.slf4j:slf4j-simple:2.0.12'
+}
+
+// Configuración para la ejecución de las pruebas
+test {
+    // Usar el framework TestNG para ejecutar las pruebas
+    useTestNG()
+}
